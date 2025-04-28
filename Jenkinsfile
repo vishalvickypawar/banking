@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+            docker {
+                image 'maven:3.8.7-openjdk-11' // Adjust the version as needed
+                args '-v $HOME/.m2:/root/.m2' // Optional: Cache Maven dependencies
+            }
+        }
     stages {
         stage('Checkout') {
             steps {
